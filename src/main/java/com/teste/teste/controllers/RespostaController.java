@@ -1,19 +1,18 @@
 package com.teste.teste.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RespostaController {
     
     @PostMapping("/resposta")
-    public String cadastro(@RequestParam("nome") String nome, @RequestParam("email") String email,Model mvr){
-        //String mensagem = "Nome " + nome.toUpperCase() + " email " + email.toUpperCase();
-        //mvr.addAttribute("mensagem",mensagem);
-        mvr.addAttribute("nome",nome);
-        mvr.addAttribute("email",email.toUpperCase());
+    public String cadastro( UsuarioController Usuario ,Model mvr){
+        
+        mvr.addAttribute("nome",Usuario.getNome());
+        mvr.addAttribute("celular",Usuario.getCelular());
+        mvr.addAttribute("email",Usuario.getEmail().toUpperCase());
         return "valores";
 
     }
